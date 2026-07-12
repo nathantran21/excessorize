@@ -4,7 +4,14 @@
 
 A PWA that catalogs the accessories you own, reads a photo of your outfit, and
 recommends pairings **from your own closet** — with a plain-language reason for
-every pick. Built from the Excessorize PRD and the v12 "Functional" design pass.
+every pick. Built from the Excessorize PRD.
+
+**v2 "Noir Atelier":** liquid-glass luxury UI over a chiaroscuro, lightly
+airbrushed ground — one warm key light, deep shadow, champagne-gold accents,
+serif display type. Adds onboarding, Profile (Style DNA), Settings with full
+data export/import, look favorites, search + sort + filters everywhere, and a
+motion system gated by `prefers-reduced-motion`. The user flow graph and UX
+audit live in `FLOWS.md`.
 
 ## What's in here
 
@@ -19,6 +26,7 @@ every pick. Built from the Excessorize PRD and the v12 "Functional" design pass.
 | `db.js` | IndexedDB layer — local-first storage for closet items, outfit photos, and saved looks. |
 | `seed.js` | Starter Pack: 12 demo accessories for cold start. |
 | `sw.js` / `manifest.webmanifest` | Offline app shell + installability. |
+| `FLOWS.md` | User flow graph (mermaid), UX audit, motion spec, and the 8-scenario test matrix. |
 
 ## Try it on iPhone
 

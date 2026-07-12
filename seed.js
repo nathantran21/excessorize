@@ -19,7 +19,8 @@
       hat: `<ellipse cx="80" cy="98" rx="56" ry="14" fill="${hex}"/><path d="M48 96 q0 -48 32 -48 q32 0 32 48" fill="${hex2 || hex}"/>`,
       glasses: `<circle cx="52" cy="82" r="22" fill="none" stroke="${hex}" stroke-width="7"/><circle cx="108" cy="82" r="22" fill="none" stroke="${hex}" stroke-width="7"/><path d="M74 82 q6 -8 12 0" fill="none" stroke="${hex}" stroke-width="6"/>`,
     };
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"><defs><radialGradient id="g" cx="50%" cy="38%" r="80%"><stop offset="0%" stop-color="#F1E7D8"/><stop offset="100%" stop-color="#E4D6C2"/></radialGradient></defs><rect width="160" height="160" fill="url(#g)"/><ellipse cx="80" cy="138" rx="44" ry="8" fill="#000" opacity=".08"/>${shapes[category] || ''}</svg>`;
+    // chiaroscuro backdrop: one soft key light upper-left, deep shadow below
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"><defs><radialGradient id="g" cx="34%" cy="22%" r="95%"><stop offset="0%" stop-color="#3A332A"/><stop offset="55%" stop-color="#221E18"/><stop offset="100%" stop-color="#141210"/></radialGradient><radialGradient id="spot" cx="50%" cy="30%" r="55%"><stop offset="0%" stop-color="#E8C87A" stop-opacity=".16"/><stop offset="100%" stop-color="#E8C87A" stop-opacity="0"/></radialGradient></defs><rect width="160" height="160" fill="url(#g)"/><rect width="160" height="160" fill="url(#spot)"/><ellipse cx="80" cy="140" rx="46" ry="9" fill="#000" opacity=".45"/>${shapes[category] || ''}</svg>`;
     return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
   }
 

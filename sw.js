@@ -1,6 +1,6 @@
 /* Excessorize service worker — app-shell precache, offline-first.
    Bump VERSION on every deploy to invalidate. */
-const VERSION = 'v1.0.0';
+const VERSION = 'v2.0.0';
 const CACHE = 'excessorize-' + VERSION;
 const SHELL = [
   './',

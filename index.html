@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
   <title>Excessorize</title>
   <meta name="description" content="You already own the right pieces. Excessorize helps you actually use them." />
-  <meta name="theme-color" content="#F3F0EA" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#211F1C" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#0C0B09" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Excessorize" />
   <link rel="stylesheet" href="app.css" />
 </head>
@@ -21,11 +20,9 @@
     <section class="screen" id="screen-today">
       <div class="top">
         <div>
+          <div class="eyebrow" id="today-greet">Good evening</div>
           <h1 class="large">Today</h1>
           <div class="subtitle" id="today-date"></div>
-        </div>
-        <div class="top-actions">
-          <button class="btn primary small" data-nav="style">Style an outfit</button>
         </div>
       </div>
       <div id="today-content"></div>
@@ -42,11 +39,20 @@
           <button class="btn primary small" id="btn-add-item">+ Add piece</button>
         </div>
       </div>
+      <div class="seg-row">
+        <div class="search" style="flex:1;margin-top:0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.3"/><path d="M15.6 15.6 20.5 20.5"/></svg>
+          <input type="search" id="closet-search" placeholder="Search pieces, colors…" autocomplete="off" />
+        </div>
+        <button class="icon-btn" id="btn-closet-sort" aria-label="Sort closet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5v15M7 19.5 3.8 16M7 19.5l3.2-3.5"/><path d="M17 19.5v-15M17 4.5 13.8 8M17 4.5l3.2 3.5"/></svg>
+        </button>
+      </div>
       <div class="chips scroll" id="closet-filters"></div>
       <div id="closet-content"></div>
     </section>
 
-    <!-- STYLE -->
+    <!-- STYLIST -->
     <section class="screen" id="screen-style">
       <div class="top">
         <div>
@@ -64,30 +70,43 @@
           <h1 class="large">Looks</h1>
           <div class="subtitle" id="looks-count"></div>
         </div>
+        <div class="top-actions">
+          <button class="icon-btn" id="btn-looks-sort" aria-label="Sort looks">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5v15M7 19.5 3.8 16M7 19.5l3.2-3.5"/><path d="M17 19.5v-15M17 4.5 13.8 8M17 4.5l3.2 3.5"/></svg>
+          </button>
+        </div>
       </div>
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.3"/><path d="M15.6 15.6 20.5 20.5"/></svg>
+        <input type="search" id="looks-search" placeholder="Search looks, pieces…" autocomplete="off" />
+      </div>
+      <div class="chips scroll" id="looks-filters"></div>
       <div id="looks-content"></div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="screen" id="screen-profile">
+      <div class="top">
+        <div>
+          <h1 class="large">Profile</h1>
+          <div class="subtitle">Your taste, your data</div>
+        </div>
+      </div>
+      <div id="profile-content"></div>
     </section>
   </div>
 
-  <!-- tab bar -->
+  <!-- tab bar (icons injected by app.js) -->
   <nav class="tabbar" id="tabbar">
-    <button data-nav="today" aria-label="Today">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-      Today
-    </button>
-    <button data-nav="closet" aria-label="Closet">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M12 3.5v17M3.5 12h17"/></svg>
-      Closet
-    </button>
-    <button data-nav="style" aria-label="Stylist">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.3L19 10l-5.1 1.7L12 17l-1.9-5.3L5 10l5.1-1.7z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-      Stylist
-    </button>
-    <button data-nav="looks" aria-label="Looks">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.2-8.5C1.2 8 3 5 6.2 5c2 0 3.4 1.1 4.1 2.2h3.4C14.4 6.1 15.8 5 17.8 5 21 5 22.8 8 21.2 11.5 19 15.7 12 20 12 20z" transform="scale(.92) translate(1 .5)"/></svg>
-      Looks
-    </button>
+    <button data-nav="today" aria-label="Today">Today</button>
+    <button data-nav="closet" aria-label="Closet">Closet</button>
+    <button data-nav="style" aria-label="Stylist">Stylist</button>
+    <button data-nav="looks" aria-label="Looks">Looks</button>
+    <button data-nav="profile" aria-label="Profile">Profile</button>
   </nav>
+
+  <!-- onboarding layer -->
+  <div class="ob-wrap" id="ob-wrap" style="display:none"><div class="ob" id="ob"></div></div>
 
   <!-- generic bottom sheet -->
   <div class="sheet-wrap" id="sheet-wrap">
@@ -98,9 +117,10 @@
     </div>
   </div>
 
-  <!-- hidden photo inputs: capture=environment opens the iPhone camera directly -->
+  <!-- hidden inputs: capture=environment opens the iPhone camera directly -->
   <input type="file" accept="image/*" capture="environment" id="input-camera" hidden />
   <input type="file" accept="image/*" id="input-library" hidden />
+  <input type="file" accept="application/json,.json" id="input-import" hidden />
 
   <script src="engine.js"></script>
   <script src="db.js"></script>
